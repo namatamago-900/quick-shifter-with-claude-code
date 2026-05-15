@@ -43,37 +43,6 @@
 
 ---
 
-## 配線色コード
-
-| Code  | Color (EN)    |
-|-------|---------------|
-| R     | Red           |
-| G     | Green         |
-| Y     | Yellow        |
-| V     | Violet        |
-| GR    | Grey          |
-| BN    | Brown         |
-| BK    | Black         |
-| P     | Pink          |
-| LB    | Light Blue    |
-| W-R   | White-Red     |
-| G-W   | Green-White   |
-| GR-R  | Grey-Red      |
-| R-BK  | Red-Black     |
-| O-W   | Orange-White  |
-| Y-G   | Yellow-Green  |
-| Y-BK  | Yellow-Black  |
-| GR-BK | Grey-Black    |
-| R-G   | Red-Green     |
-| O-BK  | Orange-Black  |
-| V-BK  | Violet-Black  |
-| W-B   | White-Blue    |
-| R-B   | Red-Blue      |
-| G-BK  | Green-Black   |
-| G-B   | Green-Blue    |
-
----
-
 ## 回路図
 
 ### 1. 既存の点火系回路
@@ -103,17 +72,18 @@ IGNITION MODULE / IDS (23) <-------- PICK-UP — Horizontal cylinder (22a)
 ![alt text](image.png)
 ```
 【電源供給】
-バッテリー ------> リレー --------> Arduino nano
+Battery (3) ------> リレー --------> Arduino nano
                      ↑ 
                   ACC電源 (トリガ)
 
 【RPM取得】
-ピックアップコイル ------> フォトカプラ/シュミットトリガ ------> Arduino nano (D2)
+PICK-UP — Horizontal cylinder (22a) ------> フォトカプラ/シュミットトリガ ------> Arduino nano (D2)
+PICK-UP — Vertical cylinder (22b) ------> フォトカプラ/シュミットトリガ ------> Arduino nano (D3)
 
 【各センサーの状態取得】
-シフトロッドセンサー --------------------------------------------> Arduino nano (D3)
+シフトロッドセンサー --------------------------------------------> Arduino nano (D4)
                                                |---------------> Arduino nano (GND)
-クラッチセンサー -----------------------------------------------> Arduino nano (D4)
+クラッチセンサー -----------------------------------------------> Arduino nano (D5)
                                                |---------------> Arduino nano (GND)
 
 【点火カット出力】
