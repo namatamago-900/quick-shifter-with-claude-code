@@ -78,7 +78,6 @@ Battery (3) ------> リレー --------> Arduino nano
 
 【RPM取得】
 PICK-UP — Horizontal cylinder (22a) ------> フォトカプラ/シュミットトリガ ------> Arduino nano (D2)
-PICK-UP — Vertical cylinder (22b) ------> フォトカプラ/シュミットトリガ ------> Arduino nano (D3)
 
 【各センサーの状態取得】
 シフトロッドセンサー --------------------------------------------> Arduino nano (D4)
