@@ -1,8 +1,7 @@
 # 点火系回路に関するドメイン知識 — Ducati 900SS (1995年式)
 
 ## 全体回路図
-![alt text](wiring.png)
-
+![alt text](image.png)
 ## コンポーネント一覧
 
 | No. | Component                             |
