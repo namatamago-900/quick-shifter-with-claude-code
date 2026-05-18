@@ -1,4 +1,7 @@
-# 電装系(主に点火系)配線に関するドメイン知識 — Ducati 900SS (1995年式)
+# 点火系回路に関するドメイン知識 — Ducati 900SS (1995年式)
+
+## 全体回路図
+![alt text](image-1.png)
 
 ## コンポーネント一覧
 
@@ -8,8 +11,8 @@
 | 2   | Front, right turn indicator           |
 | 3   | Front, left turn indicator            |
 | 4   | Horn                                  |
-| 5   | Rev counter                           |
-| 6   | Speedometer (km/h)            |
+| 5   | Rev counter (tachometer)              |
+| 6   | Speedometer (km/h)                    |
 | 7   | Dashboard warning lights (12V-1.2W)   |
 | 8   | Regulator-Rectifier                   |
 | 9   | Ignition switch                       |
@@ -42,8 +45,6 @@
 | 35  | Rear, left turn indicator             |
 
 ---
-
-## 回路図
 
 ### 1. 既存の点火系回路
 
