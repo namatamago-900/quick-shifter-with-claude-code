@@ -1,0 +1,62 @@
+name: Claude Issue Analysis
+
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  Analyze-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Analyze issue and post plan
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: '--allowedTools "Bash(git diff*),Bash(git log*),Bash(git show*),Read"'
+          prompt: |
+            GitHub Issue #${{ github.event.issue.number }} が ${{ github.event.action }} されました。
+
+            ## Issue情報
+            - タイトル: ${{ github.event.issue.title }}
+            - 作成者: @${{ github.event.issue.user.login }}
+            - 本文:
+            ${{ github.event.issue.body }}
+
+            ## タスク
+            このリポジトリはDucati 900SS (1995年式)向けArduino Nanoクイックシフターファームウェアです。
+            コードベースを必要に応じて読んだうえで、上記のIssueを分析し、
+            以下のフォーマットで修正方針をIssueコメントとして日本語で投稿してください。
+
+            ### コメントフォーマット
+
+            ## Issue分析
+
+            ### 概要
+            （問題・要求を1〜2文で要約）
+
+            ### 修正方針
+            （ステップバイステップの実装計画。各ステップに対象ファイルを明記）
+
+            ### 影響ファイル
+            （修正が必要なファイルとその理由を箇条書き。複数ファイルにわたるよう修正範囲が広い場合はタスク分解を提示する。具体的なタスク分解例も提示する）
+
+            ### 注意事項
+            （リスク・考慮事項があれば記載。なければ「特になし」）
+
+            ---
+            この方針で問題なければ、このコメントへの返信として `@claude 実装してください` とコメントしてください。ブランチを作成して実装・PRを作成します。
+
+            ### 投稿方法
+            上記フォーマットで組み立てたコメント本文を、以下のコマンドで投稿してください：
+            `gh issue comment ${{ github.event.issue.number }} --body "<コメント本文>"`
