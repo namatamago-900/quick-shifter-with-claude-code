@@ -1,7 +1,7 @@
 # 点火系回路に関するドメイン知識 — Ducati 900SS (1995年式)
 
 ## 全体回路図
-![alt text](image-1.png)
+![alt text](wiring.png)
 
 ## コンポーネント一覧
 
@@ -46,7 +46,7 @@
 
 ---
 
-### 1. 既存の点火系回路
+### 既存の点火系回路
 
 ```
 IGNITION SWITCH (9)
@@ -54,7 +54,7 @@ IGNITION SWITCH (9)
      | （電源供給）
      v
 IGNITION MODULE / IDS (23) <-------- PICK-UP — Horizontal cylinder (22a)
-     |                          <---- PICK-UP — Vertical cylinder   (22b)
+IGNITION MODULE / IDS (23) <-------- PICK-UP — Vertical cylinder   (22b)
      |                                  [タイミング信号（各気筒独立）]
      |
      |--- COIL — Horizontal cylinder (26) ---> SPARK PLUG Horizontal (28)
@@ -68,28 +68,3 @@ IGNITION MODULE / IDS (23) <-------- PICK-UP — Horizontal cylinder (22a)
 
 ---
 
-### 2. クイックシフター実装後の点火系回路 (検討中)
-
-![alt text](image.png)
-```
-【電源供給】
-Battery (3) ------> リレー --------> Arduino nano
-                     ↑ 
-                  ACC電源 (トリガ)
-
-【RPM取得】
-PICK-UP — Horizontal cylinder (22a) ------> フォトカプラ/シュミットトリガ ------> Arduino nano (D2)
-
-【各センサーの状態取得】
-シフトロッドセンサー --------------------------------------------> Arduino nano (D4)
-                                               |---------------> Arduino nano (GND)
-クラッチセンサー -----------------------------------------------> Arduino nano (D5)
-                                               |---------------> Arduino nano (GND)
-
-【点火カット出力】
-ピックアップコイル --------------------------------------> 車体アース (GND)
-                                 ↑ 
-                      MOSFET / フォトモスリレー
-                                 ↑ (最終的なoutput)
-                           Arduino nano
-```
