@@ -95,6 +95,6 @@ namespace sensors {
   bool isShiftPressed() { return swShift.confirmed; }
   bool isShiftReleased() { return !swShift.confirmed; }
   bool isClutchPressed() { return swClutch.confirmed; }
-  bool isNeutralPressed(){ return swNeutral.confirmed; }
+  bool isNeutralPressed() { return swNeutral.confirmed; }
 
 }  // namespace sensors
