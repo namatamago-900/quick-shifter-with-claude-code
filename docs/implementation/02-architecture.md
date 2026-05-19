@@ -6,7 +6,7 @@
 
 ## 1. ファイル構成（4層）
 
-姉妹プロジェクト `quick-shifter-with-arduino` の構成を踏襲。`.ino` は orchestrator のみ。
+`.ino` は orchestrator のみ。
 
 ```
 quick-shifter-with-claude-code.ino   ← setup() / loop() のみ
