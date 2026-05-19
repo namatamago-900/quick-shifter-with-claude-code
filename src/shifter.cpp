@@ -116,11 +116,11 @@ namespace shifter {
     DBG_INIT();
     DBG_EVENT("SYSTEM_BOOT");
 
-#ifdef DEBUG_MODE
+    #ifdef DEBUG_MODE
     wdt_enable(WDTO_2S);  // シリアル出力によるWDTリセットを防ぐため2秒に延長
-#else
+    #else
     wdt_enable(WDTO_1S);
-#endif
+    #endif
   }
 
   void update() {
