@@ -22,13 +22,13 @@ static uint32_t cutStartMs;
 static uint32_t cutTimeMs;
 static uint32_t cooldownStartMs;
 static uint16_t rpmPreCut;
-static bool     shiftMustRelease;  // リリース要件: カット後は一度HIGHに戻るまで次のシフトを受け付けない
-static bool     inhibitLogged;     // INHIBIT ログのスパム防止
+static bool shiftMustRelease;  // リリース要件: カット後は一度HIGHに戻るまで次のシフトを受け付けない
+static bool inhibitLogged;     // INHIBIT ログのスパム防止
 
 // ── LED制御 ──────────────────────────────────────────────────────────────────
 
 static uint32_t ledToggleMs;
-static bool     ledOn;
+static bool ledOn;
 
 static void setLed(bool on) {
   uint8_t v = on ? HIGH : LOW;
