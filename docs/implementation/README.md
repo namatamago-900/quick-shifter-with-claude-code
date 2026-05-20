@@ -60,13 +60,7 @@
 
 ## 実装着手前のドキュメント追対応チェックリスト
 
-`docs/implementation/05-hardware-scope-tuning.md` §1.5 と整合。
-
-| # | 対象ファイル | 内容 |
-|---|---|---|
-| 1 | `docs/arduino/pin_assign.md` | D4（N）と D7（LED）の追加、D3 の INT0→INT1 誤記訂正、全入力ピンの極性・`INPUT_PULLUP` 要否欄を追加 |
-| 2 | `docs/domain/sensors.md` | シフトセンサーの単方向性（上方向プッシュ時のみ ON）を明記 |
-| 3 | `docs/domain/ignition.md` | 本実装が片側ピックアップのみをタップする旨を補足 |
+[05-hardware-scope-tuning.md §1.5](./05-hardware-scope-tuning.md#15-本実装着手前のドキュメント追対応チェックリスト) を参照。
 
 ---
 
