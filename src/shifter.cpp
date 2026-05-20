@@ -24,6 +24,7 @@ static uint32_t cooldownStartMs;
 static uint16_t rpmPreCut;
 static bool shiftMustRelease;  // リリース要件: カット後は一度HIGHに戻るまで次のシフトを受け付けない
 static bool inhibitLogged;     // INHIBIT ログのスパム防止
+static bool rpmWasAlive;       // rpm信号断の遷移検出（LOSTエッジで1回だけログ）
 
 // ── LED制御 ──────────────────────────────────────────────────────────────────
 
@@ -110,6 +111,7 @@ namespace shifter {
     rpmPreCut = 0;
     shiftMustRelease = false;
     inhibitLogged = false;
+    rpmWasAlive = false;
     ledToggleMs = 0;
     ledOn = false;
 
@@ -125,6 +127,13 @@ namespace shifter {
 
   void update() {
     uint32_t now = millis();
+
+    // rpm信号断の遷移検出（alive→dead の立下りエッジで1回だけログ）
+    bool rpmAlive = sensors::isRpmSignalAlive();
+    if (rpmWasAlive && !rpmAlive) {
+      DBG_EVENT("ERROR rpm_signal_timeout");
+    }
+    rpmWasAlive = rpmAlive;
 
     // リリース要件の追跡（全状態で毎ループ評価）
     if (shiftMustRelease && sensors::isShiftReleased()) {
