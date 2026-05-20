@@ -60,7 +60,7 @@
 
 ## 実装着手前のドキュメント追対応チェックリスト
 
-`docs/implementation/05-hardware-scope-tuning.md` §5.5 と整合。
+`docs/implementation/05-hardware-scope-tuning.md` §1.5 と整合。
 
 | # | 対象ファイル | 内容 |
 |---|---|---|
