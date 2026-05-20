@@ -16,7 +16,7 @@ enum State : uint8_t {
   COOLDOWN
 };
 
-static State    state;
+static State state;
 static uint32_t stateStartMs;
 static uint32_t cutStartMs;
 static uint32_t cutTimeMs;
