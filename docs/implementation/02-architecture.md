@@ -41,10 +41,10 @@ src/
 ```cpp
 // ───── ピン定義（正本: docs/arduino/pin_assign.md） ─────
 // 入力スイッチはすべてアクティブLOW（INPUT_PULLUP）
-//   D5 シフトロッドSW   : 踏み込み = LOW（上方向プッシュ時のみ ON、単方向性要確認）
+//   D5 シフトロッドSW   : 踏み込み = LOW（上方向プッシュ時のみ ON、docs/implementation/05-hardware-scope-tuning.md §1.3 要確認）
 //   D6 クラッチSW       : 油圧上昇 = LOW (DRC F5945)
 //   D4 ニュートラルSW   : N位置   = LOW
-// 出力はアクティブHIGH
+// 出力はアクティブHIGH（docs/implementation/04-safety.md §2）
 //   D8 点火カット出力   : HIGH = カット
 //   D7 状態LED          : HIGH = 点灯
 #define PIN_RPM_PULSE     3   // INT1 (Nano)
