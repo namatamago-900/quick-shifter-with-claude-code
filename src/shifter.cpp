@@ -16,15 +16,15 @@ enum State : uint8_t {
   COOLDOWN
 };
 
-static State state;
+static State state; // ステートマシンの現在状態（LOCKED / IDLE / SHIFT_PENDING / CUTTING / COOLDOWN）
 static uint32_t stateStartMs;
 static uint32_t cutStartMs;
 static uint32_t cutTimeMs;
 static uint32_t cooldownStartMs;
 static uint16_t rpmPreCut;
-static bool shiftMustRelease;  // リリース要件: カット後は一度HIGHに戻るまで次のシフトを受け付けない
-static bool inhibitLogged;     // INHIBIT ログのスパム防止
-static bool rpmWasAlive;       // rpm信号断の遷移検出（LOSTエッジで1回だけログ）
+static bool shiftMustRelease; // カット完了後、シフトスイッチが一度 HIGH（リリース）に戻るまで次のシフトを受け付けないためのインターロックフラグ
+static bool inhibitLogged; // IIDLE 中に QS 抑制条件が成立した際の INHIBIT ログを 1 回だけ出力するためのスパム防止フラグ
+static bool rpmWasAlive; // rpm信号断の遷移検出（LOSTエッジで1回だけログ）
 
 // ── LED制御 ──────────────────────────────────────────────────────────────────
 

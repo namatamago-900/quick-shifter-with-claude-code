@@ -4,8 +4,8 @@
 #include <Arduino.h>
 
 static uint8_t currentGear;
-static bool nPrev;
-static bool neutralEverObserved;
+static bool nPrev; // 前回ループのニュートラルスイッチ状態フラグ
+static bool neutralEverObserved; // 起動後にニュートラルスイッチが一度でも ON になったかどうかのフラグ
 
 namespace gear_logic {
 

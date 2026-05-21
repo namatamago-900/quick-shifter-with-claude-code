@@ -11,6 +11,10 @@ static volatile uint8_t sampleIdx;
 static volatile bool firstPulseSeen;
 static volatile bool periodsValid;
 
+/*
+ * RPMパルスを受け取るたびに呼び出される割り込みサービスルーチン。
+ * パルス間隔を測定し、リングバッファに保存する。
+ */
 static void onRpmPulseISR() {
   uint32_t now = micros();
   if (firstPulseSeen) {
@@ -34,6 +38,12 @@ static SwState swShift;
 static SwState swClutch;
 static SwState swNeutral;
 
+/**
+ * チャタリング除去(デバウンス)フィルター
+ * @param sw スイッチ状態構造体
+ * @param rawPressed スイッチ状態
+ * @param debounceMs デバウンス時間（ms）
+ */
 static void updateSw(SwState& sw, bool rawPressed, uint16_t debounceMs) {
   if (rawPressed != sw.pending) {
     sw.pending = rawPressed;
@@ -63,6 +73,10 @@ namespace sensors {
     updateSw(swNeutral, digitalRead(PIN_NEUTRAL_SW) == LOW, SWITCH_DEBOUNCE_MS);
   }
 
+  /**
+   * 直近パルス間隔の移動平均からエンジン回転数（RPM）を算出して返す。
+   * サンプル未満またはタイムアウト（信号断）の場合は 0 を返す。
+   */
   uint16_t getRPM() {
     uint32_t copy[RPM_AVG_SAMPLES];
     uint32_t last;
@@ -83,6 +97,10 @@ namespace sensors {
     return (uint16_t)(60000000UL / (sum / RPM_AVG_SAMPLES));
   }
 
+  /**
+   * 最後のパルス受信から RPM_TIMEOUT_MS 以内かどうかを返す。
+   * 一度もパルスを受信していない場合は false を返す。
+   */
   bool isRpmSignalAlive() {
     noInterrupts();
     bool seen = firstPulseSeen;
