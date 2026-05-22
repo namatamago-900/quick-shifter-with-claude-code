@@ -47,6 +47,7 @@ namespace gear_logic {
 
   uint32_t calculateCutTimeMs(uint16_t rpm) {
     if (rpm == 0) return MIN_CUT_MS;
+    if (currentGear < 1 || currentGear > 5) return MIN_CUT_MS;
     uint32_t cut = (uint32_t)pgm_read_word(&REVS_REQUIRED_X10[currentGear - 1]) * 6000UL / rpm;
     if (cut < MIN_CUT_MS) cut = MIN_CUT_MS;
     if (cut > MAX_CUT_MS) cut = MAX_CUT_MS;
