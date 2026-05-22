@@ -23,7 +23,7 @@ static uint32_t cutTimeMs;
 static uint32_t cooldownStartMs;
 static uint16_t rpmPreCut;
 static bool shiftMustRelease; // カット完了後、シフトスイッチが一度 HIGH（リリース）に戻るまで次のシフトを受け付けないためのインターロックフラグ
-static bool inhibitLogged; // IIDLE 中に QS 抑制条件が成立した際の INHIBIT ログを 1 回だけ出力するためのスパム防止フラグ
+static bool inhibitLogged; // IDLE 中に QS 抑制条件が成立した際の INHIBIT ログを 1 回だけ出力するためのスパム防止フラグ
 static bool rpmWasAlive; // rpm信号断の遷移検出（LOSTエッジで1回だけログ）
 
 // ── LED制御 ──────────────────────────────────────────────────────────────────

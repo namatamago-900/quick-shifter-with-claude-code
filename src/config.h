@@ -27,4 +27,4 @@ extern const uint16_t REVS_REQUIRED_X10[5] PROGMEM;
 #define COOLDOWN_MS 300
 
 // デバッグ
-#define DEBUG_MODE// 本番ビルドではコメントアウト
+#define DEBUG_MODE  // 本番ビルドではコメントアウト
