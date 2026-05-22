@@ -3,6 +3,8 @@
 #include "sensors.h"
 #include <Arduino.h>
 
+const uint16_t REVS_REQUIRED_X10[5] PROGMEM = { 80, 70, 60, 50, 45 };
+
 static uint8_t currentGear;
 static bool nPrev; // 前回ループのニュートラルスイッチ状態フラグ
 static bool neutralEverObserved; // 起動後にニュートラルスイッチが一度でも ON になったかどうかのフラグ
@@ -45,7 +47,7 @@ namespace gear_logic {
 
   uint32_t calculateCutTimeMs(uint16_t rpm) {
     if (rpm == 0) return MIN_CUT_MS;
-    uint32_t cut = (uint32_t)REVS_REQUIRED_X10[currentGear - 1] * 6000UL / rpm;
+    uint32_t cut = (uint32_t)pgm_read_word(&REVS_REQUIRED_X10[currentGear - 1]) * 6000UL / rpm;
     if (cut < MIN_CUT_MS) cut = MIN_CUT_MS;
     if (cut > MAX_CUT_MS) cut = MAX_CUT_MS;
     return cut;

@@ -17,8 +17,9 @@
 #define MIN_CUT_MS 40
 #define MAX_CUT_MS 120
 // 1→2, 2→3, 3→4, 4→5, 5→6 の遷移に対応。gear (1..5) から REVS_REQUIRED_X10[gear-1]。
-// revs_required を ×10 して整数化（AVR の浮動小数を回避）。
-const uint16_t REVS_REQUIRED_X10[5] = { 80, 70, 60, 50, 45 };
+// revs_required を ×10 して整数化（AVR の浮動小数を回避）。PROGMEM で Flash に配置。
+#include <avr/pgmspace.h>
+extern const uint16_t REVS_REQUIRED_X10[5] PROGMEM;
 
 // タイミング
 #define SHIFT_DEBOUNCE_MS 5
