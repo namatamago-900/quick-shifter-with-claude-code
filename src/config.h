@@ -1,3 +1,4 @@
+#pragma once
 // ピン定義
 #define PIN_RPM_PULSE 3 // D3 rpm信号入力
 #define PIN_SHIFT_SW 5 // D5 シフトロッドSW
